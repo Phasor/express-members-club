@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const { body,validationResult } = require('express-validator'); // form data sanitization and validation
+const bcrypt = require('bcryptjs'); // hash passwords
 
 // Display User create form on GET.
 exports.user_create_get = (req, res, next) => {
@@ -36,33 +37,43 @@ exports.user_create_post = [
     .withMessage("Password has non-alphanumeric characters."),
     // Process request after validation and sanitization.
     (req, res, next) => {
-      // Extract the validation errors from a request.
-      const errors = validationResult(req);
-  
-      if (!errors.isEmpty()) {
-        // There are errors. Render form again with sanitized values/errors messages.
-        res.render("sign-up", {
-          title: "Sign Up",
-          errors: errors.array(),
-        });
-        return;
-      }
-      // Data from form is valid.
-  
-      // Create an Author object with escaped and trimmed data.
-      const newUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        member: false,
-      });
-      newUser.save((err) => {
-        if (err) {
-          return next(err);
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+    
+        if (!errors.isEmpty()) {
+            // There are errors. Render form again with sanitized values/errors messages.
+            res.render("sign-up", {
+            title: "Sign Up",
+            errors: errors.array(),
+            });
+            return;
         }
-        // Successful - redirect to home.
-        res.redirect("/");
-      });
+        
+        // Data from form is valid.
+        // Create a User object with escaped and trimmed data.
+        bcrypt.hash(req.body.password, 10, (error, hashedPassword) => {
+            // if err, reload page with error message
+            if (error) {
+                console.log(error);
+                res.redirect("/sign-up", { error: error });
+            }
+            
+            // if no err, create new user
+            const newUser = new User({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: hashedPassword,
+                member: false,
+            });
+            // save new user
+            newUser.save((err) => {
+                if (err) {
+                return next(err);
+                }
+                // Successful - redirect to home.
+                res.redirect("/");
+            });
+        })
     },
-  ];
+];

@@ -22,5 +22,8 @@
         <% for (var i =1; i <= locals.errors.length;  i++ ) { %>
             <p><%= locals.errors[i-1].msg %></p>
         <% }} %>
+    <% if (locals.error) { %>
+        <p><%= locals.error %></p>
+    <% } %>
 </body>
 </html>
