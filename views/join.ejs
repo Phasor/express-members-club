@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= locals.title %></title>
+</head>
+<body>
+    <p>Enter the Password to Join the Club</p>
+    <form action="/join" method="post">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email">
+        <label for="secretWord">Secret Word</label>
+        <input type="text" name="secretWord" id="secretWord">
+        <button type="submit">Join</button>
+    </form>
+    <% if (locals.error) { %>
+        <p><%= locals.error.msg %></p>
+    <% } %>
+    <% if (locals.errors) { %>
+        <% for (var i =1; i <= locals.errors.length;  i++ ) { %>
+            <p><%= locals.errors[i-1].msg %></p>
+        <% } %>
+    <% } %>
+</body>
+</html>
