@@ -1,13 +1,16 @@
 const Post = require("../models/post");
+const User = require("../models/user");
 
 exports.index_get = (req, res) => {
-    Post.find({}, (err, posts) => {
+    Post.find({}).populate("author").exec((err, posts) => {
         if (err) {
-            res.render("index", {error: err});
-        }
-        if (posts) {
+            console.log(err);
+            res.redirect("/");
+        } else {
             console.log(posts);
-            res.render("index", {posts: posts, title: "Home", user: req.user});
+            res.render("index", { title: "Home", user: req.user, posts: posts });
         }
-    })
-}
+    });
+};
+
+   

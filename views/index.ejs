@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Home</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -20,9 +20,10 @@
     <ul>
       <% for (var i = 0; i < locals.posts.length; i++) { %>
         <div>
+            <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
             <li><%= locals.posts[i].title %></li>
             <li><%= locals.posts[i].content %></li>
-            <li><%= locals.posts[i].date %></li>
+            <li><%= `Posted: ${locals.posts[i].date}` %></li>
             </div>
         <hr/>
       <% } %>
