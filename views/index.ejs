@@ -10,13 +10,23 @@
         <p><a href="/create-message">Create Message</a></p>
         <p><a href="/logout">Log Out</a></p>
     <% }%>
-    
-    <h1><%= locals.title %></h1>
-    <p>Welcome to <%= title %></p>
 
     <% if (!locals.user) {%>
         <a href="/login">Log In</a>
     <% }%>
+    
+    <h1><%= locals.title %></h1>
+
+    <ul>
+      <% for (var i = 0; i < locals.posts.length; i++) { %>
+        <div>
+            <li><%= locals.posts[i].title %></li>
+            <li><%= locals.posts[i].content %></li>
+            <li><%= locals.posts[i].date %></li>
+            </div>
+        <hr/>
+      <% } %>
+    </ul>
 
     <p><%= locals.message %></p>
 
