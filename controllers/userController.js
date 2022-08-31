@@ -73,6 +73,7 @@ exports.user_create_post = [
                 email: req.body.email,
                 password: hashedPassword,
                 member: false,
+                admin: false,
             });
             // save new user
             newUser.save((err) => {

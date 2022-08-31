@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     email: String,
     password: String,
     member: Boolean,
+    admin: Boolean,
 });
 
 // Virtual for members's full name
