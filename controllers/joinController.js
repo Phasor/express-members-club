@@ -41,7 +41,7 @@ body("secretWord")
                 }
                 if (user) {
                     console.log("User membership updated to true");
-                    res.render('index', {message: "You are now a member!", title: "Home"});
+                    res.redirect("/");
                 }
             })
         } else {

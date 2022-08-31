@@ -7,8 +7,9 @@ exports.index_get = (req, res) => {
             console.log(err);
             res.redirect("/");
         } else {
-            console.log(posts);
-            res.render("index", { title: "Home", user: req.user, posts: posts });
+            //console.log(posts);
+            console.log(req.user);
+            res.render("index", { user: req.user, posts: posts });
         }
     });
 };

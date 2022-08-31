@@ -20,10 +20,14 @@
     <ul>
       <% for (var i = 0; i < locals.posts.length; i++) { %>
         <div>
-            <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
             <li><%= locals.posts[i].title %></li>
             <li><%= locals.posts[i].content %></li>
-            <li><%= `Posted: ${locals.posts[i].date}` %></li>
+            <% if (locals.user) { %> <!-- logged in -->
+                <% if (locals.user.member) { %> <!-- is a member -->
+                    <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
+                    <li><%= `Posted: ${locals.posts[i].date}` %></li>
+                    <% } %>
+                <% } %>
             </div>
         <hr/>
       <% } %>
