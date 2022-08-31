@@ -5,8 +5,17 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <% if (locals.user) {%>
+        <h1>Welcome back <%= user.fullName %></h1>
+        <a href="/logout">Log Out</a>
+    <% }%>
+    
     <h1><%= locals.title %></h1>
     <p>Welcome to <%= title %></p>
+    <a href="/login">Log in</a>
     <p><%= locals.message %></p>
+    <% if (locals.error) { %>
+        <p><%= locals.error %></p>
+    <% } %>
   </body>
 </html>

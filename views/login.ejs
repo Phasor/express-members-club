@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= locals.title %></title>
+</head>
+<body>
+    <h1>Log In</h1>
+    <form action="/login" method="POST">
+      <label for="email">Email</label>
+      <input name="email" placeholder="bob@mail.com" type="text" />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <button>Log In</button>
+    </form>
+  <p><%= locals.message %></p>
+  <% if (locals.errors) { %>
+    <% for (var i =1; i <= locals.errors.length;  i++ ) { %>
+        <p><%= locals.errors[i-1].msg %></p>
+    <% }} %>
+
+</body>
+</html>
