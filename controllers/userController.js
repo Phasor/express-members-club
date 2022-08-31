@@ -35,6 +35,14 @@ exports.user_create_post = [
     .escape()
     .isAlphanumeric()
     .withMessage("Password has non-alphanumeric characters."),
+    body("confirmPassword")
+    .trim()
+    .custom((value, { req }) => { // check the password and confirm password fields match
+        if (value !== req.body.password) {
+            throw new Error("Password confirmation does not match password");
+        }
+        return true;
+    }),
     // Process request after validation and sanitization.
     (req, res, next) => {
         // Extract the validation errors from a request.
