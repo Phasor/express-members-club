@@ -6,6 +6,7 @@ var logger = require('morgan');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const passport = require('passport');
+const User = require('./models/user');
 const LocalStrategy = require('passport-local').Strategy;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -32,17 +33,18 @@ app.set('view engine', 'ejs');
 // enable middleware
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 
 // Next 3 functions are needed by Passport.js for authentication. We don't call them directly
 passport.use( 
-    new LocalStrategy((email, password, done) => {
-      User.findOne({ email: email }, (err, user) => {
+    new LocalStrategy((username, password, done) => {
+      User.findOne({ email: username }, (err, user) => {
         if (err) { 
           return done(err);
+        }
+        if (!user) {
+            return done(null, false, { message: "Incorrect username" });
         }
  
         bcrypt.compare(password, user.password, (err, res) => {
@@ -66,9 +68,11 @@ passport.use(
       done(err, user);
     });
   });
-  
+
+app.use(session({ secret: "testtstte", resave: false, saveUninitialized: true }));  
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
 
 /*
 If you insert this code somewhere between where you instantiate the passport middleware 
