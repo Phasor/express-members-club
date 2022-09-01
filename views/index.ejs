@@ -23,7 +23,11 @@
             <li><%= locals.posts[i].title %></li>
             <li><%= locals.posts[i].content %></li>
             <% if (locals.user) { %> <!-- is logged in -->
-                <% if (locals.user.member) || if (locals.user.admin) { %> <!-- is a member or admin -->
+                <% if (locals.user.member) { %> <!-- is a member  -->
+                    <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
+                    <li><%= `Posted: ${locals.posts[i].date}` %></li>
+                <% } %>
+                <% if (locals.user.admin) { %> <!-- is an admin -->
                     <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
                     <li><%= `Posted: ${locals.posts[i].date}` %></li>
                 <% } %>

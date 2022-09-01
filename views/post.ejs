@@ -10,7 +10,11 @@
     <h1><%= locals.post.title %></h1>
     <p><%= locals.post.content %></p>
     <% if (locals.user) { %> <!-- logged in -->
-        <% if (locals.user.member) || if (locals.user.admin) { %> <!-- is a member or admin -->
+        <% if (locals.user.member) { %> <!-- is a member  -->
+            <p><%= `Author: ${locals.post.author.firstName} ${locals.post.author.lastName}` %></p>
+            <p><%= `Posted: ${locals.post.date}` %></p>
+        <% } %>
+        <% if (locals.user.admin) { %> <!-- is an admin  -->
             <p><%= `Author: ${locals.post.author.firstName} ${locals.post.author.lastName}` %></p>
             <p><%= `Posted: ${locals.post.date}` %></p>
         <% } %>
