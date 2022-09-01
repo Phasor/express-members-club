@@ -5,7 +5,7 @@ exports.index_get = (req, res) => {
     Post.find({}).populate("author").exec((err, posts) => {
         if (err) {
             console.log(err);
-            res.redirect("/");
+            res.render("index", { error: err });
         } else {
             //console.log(posts);
             console.log(req.user);

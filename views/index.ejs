@@ -5,6 +5,21 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <div class="w-full h-[90px] bg-black">
+        <div class="max-w-[1240px] h-full mx-auto px-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-[#00d8ff] font-bold">MESSAGE BOARD</h1>
+            </div>
+            <div class="hidden md:flex">
+                <ul class="flex text-white items-center">
+                    <li>Become Member</li>
+                    <li>Become Admin</li>
+                    <button class="ml-4">Login</button>
+                </ul> 
+            </div>
+        </div>
+    </div> 
+
     <% if (locals.user) {%>
         <h1>Welcome back <%= user.firstName %></h1>
         <p><a href="/create-message">Create Message</a></p>
@@ -15,12 +30,12 @@
         <a href="/login">Log In</a>
     <% }%>
     
-    <h1><%= locals.title %></h1>
+    <h1 class="text-3xl">NFT Fam' Message Board</h1>
 
     <ul>
       <% for (var i = 0; i < locals.posts.length; i++) { %>
         <div>
-            <li><%= locals.posts[i].title %></li>
+            <li class="text-blue-600"><%= locals.posts[i].title %></li>
             <li><%= locals.posts[i].content %></li>
             <% if (locals.user) { %> <!-- is logged in -->
                 <% if (locals.user.member) { %> <!-- is a member  -->
