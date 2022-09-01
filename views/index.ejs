@@ -26,9 +26,10 @@
                 <% if (locals.user.member) { %> <!-- is a member -->
                     <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
                     <li><%= `Posted: ${locals.posts[i].date}` %></li>
-                    <% } %>
                 <% } %>
-            </div>
+            <% } %>
+            <a href=<%= locals.posts[i].url%>>Full Post</a>
+        </div>
         <hr/>
       <% } %>
     </ul>
