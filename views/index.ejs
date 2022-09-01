@@ -22,8 +22,8 @@
         <div>
             <li><%= locals.posts[i].title %></li>
             <li><%= locals.posts[i].content %></li>
-            <% if (locals.user) { %> <!-- logged in -->
-                <% if (locals.user.member) { %> <!-- is a member -->
+            <% if (locals.user) { %> <!-- is logged in -->
+                <% if (locals.user.member) || if (locals.user.admin) { %> <!-- is a member or admin -->
                     <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
                     <li><%= `Posted: ${locals.posts[i].date}` %></li>
                 <% } %>
