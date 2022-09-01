@@ -3,6 +3,19 @@
   <head>
     <title>Home</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+        function toggle() {
+            var cross = document.getElementById("cross");
+            var hamburger = document.getElementById("hamburger");
+            if (cross.style.display === "none") { // hamburger on
+                hamburger.style.display = "none"; // hamburger off
+                cross.style.display = "inherit" // cross on
+            } else { // hamburger off
+                cross.style.display = "none" // cross off
+                hamburger.style.display = "inherit"; // hamburger on
+            }
+        }
+    </script>
   </head>
   <body>
     <div class="w-full h-[90px] bg-black">
@@ -16,6 +29,26 @@
                     <li>Become Admin</li>
                     <button class="ml-4">Login</button>
                 </ul> 
+            </div>
+            <!--  Hamburger menu  -->
+            <div class="block md:hidden">
+              
+                    <svg onclick="toggle()" id="hamburger" class="fill-current text-white h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>  
+            
+                    <svg onclick="toggle()" id="cross" class="hidden stroke-current text-white h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+             
+            </div>
+            <!-- mobile menu -->
+            <div class="md:hidden w-full bg-black text-white absolute top-[90px] left-0 flex justify-center text-center">
+                <ul>
+                    <li class="text-xl">Become Member</li>
+                    <li class="text-xl">Become Admin</li>
+                    <button class="m-4">Login</button>
+                </ul>
             </div>
         </div>
     </div> 

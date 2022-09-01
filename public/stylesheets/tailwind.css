@@ -18,11 +18,11 @@
     }
 
     li {
-        @apply px-4
+        @apply p-4
     }
 
     button {
-        @apply text-white bg-gradient-to-r from-[var(--primary-purple)] to-[var(--primary-blue)] py-3 px-5 rounded-lg font-bold
+        @apply text-white bg-gradient-to-r from-[var(--primary-purple)] to-[var(--primary-blue)] py-1 px-5 rounded-lg font-bold
     }
 }
 
