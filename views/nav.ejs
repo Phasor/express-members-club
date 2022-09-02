@@ -34,8 +34,18 @@
         </div>
         <div class="hidden md:flex">
             <ul class="flex text-white items-center">
-                <a href="/join"><li>Become Member</li></a>
-                <a href="/admin"><li>Become Admin</li></a>
+                <% if (locals.user) {%> <!--  is logged in  -->
+                    <% if (!locals.user.member) {%> <!--  is not a member  -->
+                        <a href="/join"><li>Become Member</li></a>
+                    <% }%>
+                <% }%>
+
+                <% if (locals.user) {%> <!--  is logged in  -->
+                    <% if (!locals.user.admin) {%> <!--  is not admin  -->
+                        <a href="/admin"><li>Become Admin</li></a>
+                    <% }%>
+                <% }%>
+
                 <% if (!locals.user) {%>
                     <a href="/sign-up"><button>Sign Up</button></a>
                 <% }%>
@@ -60,11 +70,22 @@
         <!-- mobile menu -->
         <div id="mobile-menu" class="md:hidden w-full bg-black text-white absolute top-[90px] left-0 flex justify-center text-center">
             <ul>
-                <a href="/join"><li class="text-xl">Become Member</li></a>
-                <a href="/admin"></a><li class="text-xl">Become Admin</li></a>
+                <% if (locals.user) {%> <!--  is logged in  -->
+                    <% if (!locals.user.member) {%> <!--  is not a member  -->
+                        <a href="/join"><li class="text-xl">Become Member</li></a>
+                    <% }%>
+                <% }%>
+
+                <% if (locals.user) {%> <!--  is logged in  -->
+                    <% if (!locals.user.admin) {%> <!--  is not an admin  -->
+                        <a href="/admin"></a><li class="text-xl">Become Admin</li></a>
+                    <% }%>
+                <% }%>
+
                 <% if (!locals.user) {%>
                     <a href="/sign-up"><button>Sign Up</button></a>
                 <% }%>
+
                 <% if (!locals.user) {%>
                     <a href="/login"><button class="m-4">Log In</button></a>
                 <% }%>

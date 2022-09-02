@@ -16,7 +16,7 @@
                 <ul>
                     <% for (var i = 0; i < locals.posts.length; i++) { %>
                       <div class="border rounded-md shadow-lg mb-5">
-                          <li class="text-3xl text-blue-400 font-bold"><%= locals.posts[i].title %></li>
+                          <a href=<%= locals.posts[i].url%>><li class="text-3xl text-blue-400 font-bold"><%= locals.posts[i].title %></li></a>
                           <li><%= locals.posts[i].content.substring(0, 100) %>...</li>
                           <% if (locals.user) { %> <!-- is logged in -->
                               <% if (locals.user.member) { %> <!-- is a member  -->
