@@ -34,8 +34,8 @@
         </div>
         <div class="hidden md:flex">
             <ul class="flex text-white items-center">
-                <li>Become Member</li>
-                <li>Become Admin</li>
+                <a href="/join"><li>Become Member</li></a>
+                <a href="/admin"><li>Become Admin</li></a>
                 <% if (!locals.user) {%>
                     <a href="/login"><button class="m-4">Log In</button></a>
                 <% }%>

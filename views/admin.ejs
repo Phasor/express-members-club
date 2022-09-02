@@ -5,18 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <h1>Admin Page</h1>
-    <p>Enter admin secret to become an admin</p>
-    
-    <form action="/admin" method="POST">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="admin@admin.com">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Enter secret">
-        <button id="login">Become Admin</button>
-    </form>
+    <%- include('nav') %>  
+    <div class="w-full flex justify-center">
+        <div class="max-w-[450px] flex flex-col my-10">
+            <h1>Enter admin secret word</h1>
+            <form action="/admin" method="POST">
+                <div class="flex justify-between p-2">
+                    <label for="username">Username</label>
+                    <input class=" ml-5 border rounded-md shadow" type="text" name="username" id="username" placeholder="admin@admin.com">
+                </div>
+                <div class="flex justify-between p-2">
+                    <label for="password">Password</label>
+                    <input class=" ml-5 border rounded-md shadow" type="password" name="password" id="password" placeholder="Enter secret">
+                </div>
+                <button id="login">Submit</button>
+            </form>
+         </div>
+    </div>
     
         <% if (locals.errors) { %>
         <% for (var i = 0; i < locals.errors.length; i++) { %>

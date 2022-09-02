@@ -4,17 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= locals.title %></title>
+    <title>Join</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <p>Enter the Password to Join the Club</p>
-    <form action="/join" method="post">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">
-        <label for="secretWord">Secret Word</label>
-        <input type="text" name="secretWord" id="secretWord">
-        <button type="submit">Join</button>
-    </form>
+    <%- include('nav') %>  
+    <div class="w-full flex justify-center">
+        <div class="max-w-[450px] flex flex-col my-10">
+            <h1>Enter the secret word</h1>
+            <form action="/join" method="post">
+                <div class="flex justify-between p-2">
+                    <label for="email">Email</label>
+                    <input class=" ml-5 border rounded-md shadow" type="text" name="email" id="email">
+                </div>
+                <div class="flex justify-between p-2">
+                    <label for="secretWord">Secret Word</label>
+                    <input class="ml-5 border rounded-md shadow" type="text" name="secretWord" id="secretWord">
+                </div>
+                <button class="m-2">Join</button>
+            </form>
+        </div>
+    </div>
+
+
+
     <% if (locals.error) { %>
         <p><%= locals.error.msg %></p>
     <% } %>
