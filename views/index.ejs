@@ -3,6 +3,8 @@
   <head>
     <title>Home</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!--  script for dynamic mobile menu  -->
     <script>
         function toggle() {
             var cross = document.getElementById("cross");
@@ -30,9 +32,10 @@
             }
         }
     </script>
+
   </head>
   <body>
-    <div class="w-full h-[90px] bg-black">
+    <div class="w-full h-[90px] bg-black"> <!--  navbar  -->
         <div class="max-w-[1240px] h-full mx-auto px-4 flex justify-between items-center">
             <div>
                 <h1 class="text-[#00d8ff] font-bold">MESSAGE BOARD</h1>
@@ -41,7 +44,12 @@
                 <ul class="flex text-white items-center">
                     <li>Become Member</li>
                     <li>Become Admin</li>
-                    <button class="ml-4">Login</button>
+                    <% if (!locals.user) {%>
+                        <a href="/login"><button class="m-4">Log In</button></a>
+                    <% }%>
+                    <% if (locals.user) {%>
+                        <a href="/logout"><button class="m-4">Log Out</button></a>
+                    <% }%>
                 </ul> 
             </div>
             <!--  Hamburger menu  -->
@@ -59,13 +67,19 @@
                 <ul>
                     <li class="text-xl">Become Member</li>
                     <li class="text-xl">Become Admin</li>
-                    <button class="m-4">Login</button>
+                    <% if (!locals.user) {%>
+                        <a href="/login"><button class="m-4">Log In</button></a>
+                    <% }%>
+                    <% if (locals.user) {%>
+                        <a href="/logout"><button class="m-4">Log Out</button></a>
+                    <% }%>
+
                 </ul>
             </div>
         </div>
-    </div> 
+    </div> <!--  end of navbar  -->
 
-    <% if (locals.user) {%>
+    <!-- <% if (locals.user) {%>
         <h1>Welcome back <%= user.firstName %></h1>
         <p><a href="/create-message">Create Message</a></p>
         <p><a href="/logout">Log Out</a></p>
@@ -73,10 +87,33 @@
 
     <% if (!locals.user) {%>
         <a href="/login">Log In</a>
-    <% }%>
-    
-    <h1 class="text-3xl">NFT Fam' Message Board</h1>
+    <% }%> -->
+        
+    <div class="w-full h-[90vh]">
+        <div class="h-full max-w-[800px] mx-auto px-4 flex justify-center py-10">
+            <ul>
+                <% for (var i = 0; i < locals.posts.length; i++) { %>
+                  <div class="border rounded-md shadow-lg mb-5">
+                      <li class="text-3xl text-blue-400 font-bold"><%= locals.posts[i].title %></li>
+                      <li><%= locals.posts[i].content %></li>
+                      <% if (locals.user) { %> <!-- is logged in -->
+                          <% if (locals.user.member) { %> <!-- is a member  -->
+                              <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
+                              <li><%= `Posted: ${locals.posts[i].date}` %></li>
+                          <% } %>
+                          <% if (locals.user.admin) { %> <!-- is an admin -->
+                              <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
+                              <li><%= `Posted: ${locals.posts[i].date}` %></li>
+                          <% } %>
+                      <% } %>
+                      <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href=<%= locals.posts[i].url%>>Full Post</a></li>
+                  </div>
+                  <hr/>
+                <% } %>
+              </ul>
 
+        </div>
+    </div>
     <ul>
       <% for (var i = 0; i < locals.posts.length; i++) { %>
         <div>
