@@ -1,0 +1,72 @@
+ <!--  script for dynamic mobile menu  -->
+ <script>
+    function toggle() {
+        var cross = document.getElementById("cross");
+        var hamburger = document.getElementById("hamburger");
+
+        if (cross.style.display === "none") { // hamburger on
+            hamburger.style.display = "none"; // hamburger off
+            cross.style.display = "block" // cross on
+            hide("other");
+        } else { // hamburger off, cross on
+            cross.style.display = "none" // cross off
+            hamburger.style.display = "block"; // hamburger on
+            hide("hide");
+        }
+    }
+
+    function hide(param) {
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (param === 'hide') {
+            mobileMenu.style.position = "absolute";
+            mobileMenu.style.left = "-100%";
+        } else {
+            mobileMenu.style.position = "absolute";
+            mobileMenu.style.left = "0";
+        }
+    }
+</script>
+
+<div class="w-full h-[90px] bg-black"> <!--  navbar  -->
+    <div class="max-w-[1240px] h-full mx-auto px-4 flex justify-between items-center">
+        <div>
+            <a href="/"><h1 class="text-[#00d8ff] font-bold">MESSAGE BOARD</h1></a>
+        </div>
+        <div class="hidden md:flex">
+            <ul class="flex text-white items-center">
+                <li>Become Member</li>
+                <li>Become Admin</li>
+                <% if (!locals.user) {%>
+                    <a href="/login"><button class="m-4">Log In</button></a>
+                <% }%>
+                <% if (locals.user) {%>
+                    <a href="/logout"><button class="m-4">Log Out</button></a>
+                <% }%>
+            </ul> 
+        </div>
+        <!--  Hamburger menu  -->
+        <div class="block md:hidden">
+                <svg onclick="toggle()" id="hamburger" class="hidden fill-current text-white h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>  
+        
+                <svg onclick="toggle()" id="cross" class="stroke-current text-white h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+        </div>
+        <!-- mobile menu -->
+        <div id="mobile-menu" class="md:hidden w-full bg-black text-white absolute top-[90px] left-0 flex justify-center text-center">
+            <ul>
+                <li class="text-xl">Become Member</li>
+                <li class="text-xl">Become Admin</li>
+                <% if (!locals.user) {%>
+                    <a href="/login"><button class="m-4">Log In</button></a>
+                <% }%>
+                <% if (locals.user) {%>
+                    <a href="/logout"><button class="m-4">Log Out</button></a>
+                <% }%>
+
+            </ul>
+        </div>
+    </div>
+</div> <!--  end of navbar  -->

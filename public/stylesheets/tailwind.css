@@ -22,7 +22,7 @@
     }
 
     button {
-        @apply text-white bg-gradient-to-r from-[var(--primary-purple)] to-[var(--primary-blue)] py-1 px-5 rounded-lg font-bold
+        @apply text-white bg-blue-700 py-1 px-5 rounded-lg font-bold hover:bg-blue-800
     }
 }
 

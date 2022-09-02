@@ -2,17 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><%= locals.title %></title>
+  <title>Log In</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <h1>Log In</h1>
-    <form action="/login" method="POST">
-      <label for="username">Email</label>
-      <input name="username" placeholder="bob@mail.com" type="text" />
-      <label for="password">Password</label>
-      <input name="password" type="password" />
-      <button>Log In</button>
-    </form>
+    <%- include('nav') %>
+    <div class="w-full flex justify-center">
+        <div class="max-w-[400px] flex flex-col my-10">
+            <h1>Log In</h1>
+            <form class="" action="/login" method="POST">
+                <div class="flex justify-between p-2">
+                    <label for="username">Email</label>
+                    <input class="ml-5 border rounded-md shadow" name="username" placeholder="bob@mail.com" type="text" />
+                </div>
+                <div class="flex justify-between p-2">
+                    <label for="password">Password</label>
+                    <input class="ml-5 border rounded-md shadow" name="password" type="password" placeholder="Password" />
+                </div>
+              <button class="m-2">Log In</button>
+            </form>
+        </div> 
+
+    </div>
+ 
+
   <p><%= locals.message %></p>
   <% if (locals.errors) { %>
     <% for (var i =1; i <= locals.errors.length;  i++ ) { %>
