@@ -4,27 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><% locals.post.title %></title>
+    <title><%= locals.post.title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <h1><%= locals.post.title %></h1>
-    <p><%= locals.post.content %></p>
-    <% if (locals.user) { %> <!-- logged in -->
-        <% if (locals.user.member) { %> <!-- is a member  -->
-            <p><%= `Author: ${locals.post.author.firstName} ${locals.post.author.lastName}` %></p>
-            <p><%= `Posted: ${locals.post.date}` %></p>
-        <% } %>
-        <% if (locals.user.admin) { %> <!-- is an admin  -->
-            <p><%= `Author: ${locals.post.author.firstName} ${locals.post.author.lastName}` %></p>
-            <p><%= `Posted: ${locals.post.date}` %></p>
-        <% } %>
-    <% } %>
-    <% if (locals.user) { %> <!-- logged in -->
-        <% if (locals.user.admin) { %> <!-- is admin -->
-            <a href="/post/delete-post/<%= locals.post._id %>"><button>Delete Post</button></a>
-        <% } %>
-    <% } %>
-    <a href="/"><button>Home</button></a>
+    <%- include('nav') %>
+    <div class="w-full flex justify-center">
+        <div class="w-[80%] flex flex-col my-10">
+            <h1><%= locals.post.title %></h1>
+            <p class="text-lg p-2"><%= locals.post.content %></p>
+            <% if (locals.user) { %> <!-- logged in -->
+                <% if (locals.user.member) { %> <!-- is a member  -->
+                    <p class="text-lg p-2"><%= `Author: ${locals.post.author.firstName} ${locals.post.author.lastName}` %></p>
+                    <p class="text-lg p-2"><%= `Posted: ${locals.post.date}` %></p>
+                <% } %>
+                <% if (locals.user.admin && !locals.user.member) { %> <!-- is an admin  -->
+                    <p class="text-lg p-2"><%= `Author: ${locals.post.author.firstName} ${locals.post.author.lastName}` %></p>
+                    <p class="text-lg p-2"><%= `Posted: ${locals.post.date}` %></p>
+                <% } %>
+            <% } %>
+            <% if (locals.user) { %> <!-- logged in -->
+                <% if (locals.user.admin) { %> <!-- is admin -->
+                    <a href="/post/delete-post/<%= locals.post._id %>"><button class="p-2 m-1">Delete Post</button></a>
+                <% } %>
+            <% } %>
+
+            <% if (locals.user) { %> <!-- is logged in -->
+                <% if (!locals.user.member) { %> <!-- is not a member  -->
+                    <a class="text-[#0000ee] hover:text-blue-800 hover:underline text-2xl p-2" href="/join">Sign up and then become a member to see more!</a>
+                <% } %>
+              <% } %>
+              <% if (!locals.user) { %> <!-- is not logged in -->
+                    <a class="text-[#0000ee] hover:text-blue-800 hover:underline text-2xl p-2" href="/sign-up"> Sign up and then become a member to see more!</a>
+              <% } %>
+
+            <a href="/"><button class="p-2 m-1">Home</button></a>            
+        </div>
+    </div>
     <% if (locals.error) { %>
         <p><%= locals.error %></p>
     <% } %>

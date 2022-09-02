@@ -9,27 +9,39 @@
     <div class="w-full">
         <div class="h-full max-w-[800px] mx-auto px-4 flex justify-center mt-10">
             <!--  posts  -->
-            <ul>
-                <% for (var i = 0; i < locals.posts.length; i++) { %>
-                  <div class="border rounded-md shadow-lg mb-5">
-                      <li class="text-3xl text-blue-400 font-bold"><%= locals.posts[i].title %></li>
-                      <li><%= locals.posts[i].content.substring(0, 100) %>...</li>
-                      <% if (locals.user) { %> <!-- is logged in -->
-                          <% if (locals.user.member) { %> <!-- is a member  -->
-                              <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
-                              <li><%= `Posted: ${locals.posts[i].date}` %></li>
-                          <% } %>
-                          <% if (locals.user.admin) { %> <!-- is an admin -->
-                              <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
-                              <li><%= `Posted: ${locals.posts[i].date}` %></li>
-                          <% } %>
-                      <% } %>
-                      <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href=<%= locals.posts[i].url%>>Full Post</a></li>
-                  </div>
-                  <hr/>
+            <div class="flex flex-col w-full">
+                <% if (locals.user) { %>
+                    <a href="/create-message"><button class="w-full mb-5 shadow-lg text-lg font-bold">CREATE POST</button></a>
                 <% } %>
-              </ul>
-
+                <ul>
+                    <% for (var i = 0; i < locals.posts.length; i++) { %>
+                      <div class="border rounded-md shadow-lg mb-5">
+                          <li class="text-3xl text-blue-400 font-bold"><%= locals.posts[i].title %></li>
+                          <li><%= locals.posts[i].content.substring(0, 100) %>...</li>
+                          <% if (locals.user) { %> <!-- is logged in -->
+                              <% if (locals.user.member) { %> <!-- is a member  -->
+                                  <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
+                                  <li><%= `Posted: ${locals.posts[i].date}` %></li>
+                              <% } %>
+                              <% if (locals.user.admin && !locals.user.member) { %> <!-- is an admin -->
+                                  <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
+                                  <li><%= `Posted: ${locals.posts[i].date}` %></li>
+                              <% } %>
+                          <% } %>
+                          <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href=<%= locals.posts[i].url%>>Full Post</a></li>
+                          <% if (locals.user) { %> <!-- is logged in -->
+                            <% if (!locals.user.member) { %> <!-- is not a member  -->
+                                <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href="/join">Sign up and then become a member to see more!</a></li>
+                            <% } %>
+                          <% } %>
+                          <% if (!locals.user) { %> <!-- is not logged in -->
+                            <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href="/sign-up"> Sign up and then become a member to see more!</a></li>
+                          <% } %>
+                        </div>
+                      <hr/>
+                    <% } %>
+                  </ul>
+            </div>
         </div>
     </div>
 

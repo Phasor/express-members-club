@@ -37,6 +37,9 @@
                 <a href="/join"><li>Become Member</li></a>
                 <a href="/admin"><li>Become Admin</li></a>
                 <% if (!locals.user) {%>
+                    <a href="/sign-up"><button>Sign Up</button></a>
+                <% }%>
+                <% if (!locals.user) {%>
                     <a href="/login"><button class="m-4">Log In</button></a>
                 <% }%>
                 <% if (locals.user) {%>
@@ -57,8 +60,11 @@
         <!-- mobile menu -->
         <div id="mobile-menu" class="md:hidden w-full bg-black text-white absolute top-[90px] left-0 flex justify-center text-center">
             <ul>
-                <li class="text-xl">Become Member</li>
-                <li class="text-xl">Become Admin</li>
+                <a href="/join"><li class="text-xl">Become Member</li></a>
+                <a href="/admin"></a><li class="text-xl">Become Admin</li></a>
+                <% if (!locals.user) {%>
+                    <a href="/sign-up"><button>Sign Up</button></a>
+                <% }%>
                 <% if (!locals.user) {%>
                     <a href="/login"><button class="m-4">Log In</button></a>
                 <% }%>

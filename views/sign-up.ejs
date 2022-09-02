@@ -4,22 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= locals.title %></title>
+    <title>Sign Up</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <form action="/sign-up" method="post">
-        <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id="firstName">
-        <label for="lasttName">Last Name</label>
-        <input type="text" name="lastName" id="lastName">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" name="confirmPassword" id="confirmPassword">
-        <button type="submit">Sign Up</button>
-    </form>
+    <%- include('nav') %>
+    <div class="w-full flex justify-center">
+        <div class="max-w-[400px] flex flex-col my-10">
+            <form action="/sign-up" method="post">
+                <div class="flex justify-between p-2">
+                    <label for="firstName">First Name</label>
+                    <input class="ml-5 border rounded-md shadow" placeholder="John" type="text" name="firstName" id="firstName">
+                </div>
+                <div class="flex justify-between p-2">
+                    <label for="lasttName">Last Name</label>
+                    <input class="ml-5 border rounded-md shadow" placeholder="Smith" type="text" name="lastName" id="lastName">
+                </div>
+                <div class="flex justify-between p-2">
+                    <label for="email">Email</label>
+                    <input class="ml-5 border rounded-md shadow" placeholder="john@smith.com" type="email" name="email" id="email">
+                </div>
+                <div class="flex justify-between p-2">
+                    <label for="password">Password</label>
+                    <input class="ml-5 border rounded-md shadow" placeholder="Password" type="password" name="password" id="password">
+                </div>
+                <div class="flex justify-between p-2">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input class="ml-5 border rounded-md shadow" placeholder="Confirm password" type="password" name="confirmPassword" id="confirmPassword">
+                </div>
+                <button class="m-2">Sign Up</button>
+            </form>
+        </div>
+    </div>
     <% if (locals.errors) { %>
         <% for (var i =1; i <= locals.errors.length;  i++ ) { %>
             <p><%= locals.errors[i-1].msg %></p>
