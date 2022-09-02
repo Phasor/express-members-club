@@ -91,11 +91,14 @@
         
     <div class="w-full h-[90vh]">
         <div class="h-full max-w-[800px] mx-auto px-4 flex justify-center py-10">
+    
+
+            <!--  posts  -->
             <ul>
                 <% for (var i = 0; i < locals.posts.length; i++) { %>
                   <div class="border rounded-md shadow-lg mb-5">
                       <li class="text-3xl text-blue-400 font-bold"><%= locals.posts[i].title %></li>
-                      <li><%= locals.posts[i].content %></li>
+                      <li><%= locals.posts[i].content.substring(0, 100) %>...</li>
                       <% if (locals.user) { %> <!-- is logged in -->
                           <% if (locals.user.member) { %> <!-- is a member  -->
                               <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
@@ -114,31 +117,13 @@
 
         </div>
     </div>
-    <ul>
-      <% for (var i = 0; i < locals.posts.length; i++) { %>
-        <div>
-            <li class="text-blue-600"><%= locals.posts[i].title %></li>
-            <li><%= locals.posts[i].content %></li>
-            <% if (locals.user) { %> <!-- is logged in -->
-                <% if (locals.user.member) { %> <!-- is a member  -->
-                    <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
-                    <li><%= `Posted: ${locals.posts[i].date}` %></li>
-                <% } %>
-                <% if (locals.user.admin) { %> <!-- is an admin -->
-                    <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
-                    <li><%= `Posted: ${locals.posts[i].date}` %></li>
-                <% } %>
-            <% } %>
-            <a href=<%= locals.posts[i].url%>>Full Post</a>
-        </div>
-        <hr/>
-      <% } %>
-    </ul>
 
-    <p><%= locals.message %></p>
-
-    <% if (locals.error) { %>
-        <p><%= locals.error %></p>
-    <% } %>
+    <div class="w-full mx-auto px-4"> <!--  error messages  -->
+        <p><%= locals.message %></p>
+        <% if (locals.error) { %>
+            <p><%= locals.error %></p>
+        <% } %>
+    </div>
+    
   </body>
 </html>
