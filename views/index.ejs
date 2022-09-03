@@ -6,8 +6,20 @@
   </head>
   <body>
     <%- include('nav') %>    
-    <div class="w-full">
-        <div class="h-full max-w-[800px] mx-auto px-4 flex justify-center mt-10">
+    <div class="w-full md:h-[260px] relative top-[90px] flex justify-center items-center bg-slate-300">
+        <div class="max-w-[800px] p-2 border-4 rounded-md shadow bg-slate-200">
+            <h2 class="text-3xl font-semibold text-center">How it Works</h2>
+            <ul class="text-md">
+                <li>1. Sign up to post messages</li>
+                <li>2 .Become a member (after signing up) if you want to see the author and date of all posts</li>
+                <li>3. Enter the secret members password to become a member once signed up: ("Hooper123") </li>
+                <li>4. Only Admins can delete posts. Enter the admin code to become an admin once logged in</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="w-full relative top-[90px]">
+        <div class="h-full max-w-[800px] relative top-[50px] mx-auto px-4 flex justify-center">
             <!--  posts  -->
             <div class="flex flex-col w-full">
                 <% if (locals.user) { %>
@@ -15,9 +27,11 @@
                 <% } %>
                 <ul>
                     <% for (var i = 0; i < locals.posts.length; i++) { %>
-                      <div class="border rounded-md shadow-lg mb-5">
-                          <a href=<%= locals.posts[i].url%>><li class="text-3xl text-blue-400 font-bold"><%= locals.posts[i].title %></li></a>
-                          <li><%= locals.posts[i].content.substring(0, 100) %>...</li>
+                      <div class="border rounded-md shadow-lg mb-10 bg-gray-50">
+                        <div class="w-full border-b-2 border-gray-200">
+                            <a href=<%= locals.posts[i].url%>><li class="text-3xl text-gray-800 font-bold"><%= locals.posts[i].title %></li></a>
+                        </div>
+                          <li><%= locals.posts[i].content.substring(0, 300) %>...</li>
                           <% if (locals.user) { %> <!-- is logged in -->
                               <% if (locals.user.member) { %> <!-- is a member  -->
                                   <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>
@@ -28,15 +42,18 @@
                                   <li><%= `Posted: ${locals.posts[i].date}` %></li>
                               <% } %>
                           <% } %>
-                          <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href=<%= locals.posts[i].url%>>Full Post</a></li>
+                        
                           <% if (locals.user) { %> <!-- is logged in -->
                             <% if (!locals.user.member) { %> <!-- is not a member  -->
-                                <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href="/join">Sign up and then become a member to see more!</a></li>
+                                <li class="bg-yellow-200"><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href="/join">Sign up</a><span> and then become a member to see who wrote this!</span></li>
                             <% } %>
                           <% } %>
+
                           <% if (!locals.user) { %> <!-- is not logged in -->
-                            <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href="/sign-up"> Sign up and then become a member to see more!</a></li>
+                            <li class="bg-yellow-100"><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href="/sign-up"> Sign up</a><span> and then become a member to see who wrote this!</span></li>
                           <% } %>
+
+                          <li><a class="text-[#0000ee] hover:text-blue-800 hover:underline" href=<%= locals.posts[i].url%>>Full Post</a></li>
                         </div>
                       <hr/>
                     <% } %>
