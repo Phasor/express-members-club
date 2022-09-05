@@ -10,14 +10,14 @@
 <body>
     <%- include('nav') %>
     <div class="w-full flex justify-center">
-        <div class="w-[50%] flex flex-col my-10">
-            <h1>Create a Post</h1>
+        <div class="w-[50%] flex flex-col mt-36">
+            <h1 class="p-2">Create a Post</h1>
             <form action="/create-message" method="POST">
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="title">Post Title:</label>
                     <input class="w-full ml-5 border rounded-md shadow" type="text" name="title" placeholder="Your post's title...">
                 </div>
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="content">Message</label>
                     <textarea class="w-full ml-5 border rounded-md shadow" placeholder="Post your messge here." name="content" id="content" rows="5" cols="33"></textarea>
                 </div>

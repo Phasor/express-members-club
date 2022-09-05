@@ -2,7 +2,7 @@ const Post = require("../models/post");
 const User = require("../models/user");
 
 exports.index_get = (req, res) => {
-    Post.find({}).populate("author").exec((err, posts) => {
+    Post.find({}).sort({date:-1}).populate("author").exec((err, posts) => {
         if (err) {
             console.log(err);
             res.render("index", { error: err });

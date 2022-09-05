@@ -612,6 +612,9 @@ video {
 .mt-36 {
   margin-top: 9rem;
 }
+.mt-20 {
+  margin-top: 5rem;
+}
 .block {
   display: block;
 }
@@ -665,6 +668,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
 }
 .rounded-md {
   border-radius: 0.375rem;

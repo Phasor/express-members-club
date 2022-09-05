@@ -31,7 +31,7 @@
                         <div class="w-full border-b-2 border-gray-200">
                             <a href=<%= locals.posts[i].url%>><li class="text-3xl text-gray-800 font-bold"><%= locals.posts[i].title %></li></a>
                         </div>
-                          <li><%= locals.posts[i].content.substring(0, 300) %>...</li>
+                          <li class="whitespace-pre-wrap"><%= locals.posts[i].content.substring(0, 300) %>...</li>
                           <% if (locals.user) { %> <!-- is logged in -->
                               <% if (locals.user.member) { %> <!-- is a member  -->
                                   <li><%= `Author: ${locals.posts[i].author.firstName} ${locals.posts[i].author.lastName}` %></li>

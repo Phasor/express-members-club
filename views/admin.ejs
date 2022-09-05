@@ -10,14 +10,14 @@
 <body>
     <%- include('nav') %>  
     <div class="w-full flex justify-center">
-        <div class="max-w-[450px] flex flex-col my-10">
-            <h1>Enter admin secret word</h1>
+        <div class="max-w-[450px] flex flex-col mt-36">
+            <h1 class="p-2">Enter Admin Code</h1>
             <form action="/admin" method="POST">
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="username">Username</label>
                     <input class=" ml-5 border rounded-md shadow" type="text" name="username" id="username" placeholder="admin@admin.com">
                 </div>
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="password">Password</label>
                     <input class=" ml-5 border rounded-md shadow" type="password" name="password" id="password" placeholder="Enter secret">
                 </div>

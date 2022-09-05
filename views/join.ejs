@@ -10,14 +10,14 @@
 <body>
     <%- include('nav') %>  
     <div class="w-full flex justify-center">
-        <div class="max-w-[450px] flex flex-col my-10">
-            <h1>Enter the secret word</h1>
+        <div class="max-w-[450px] flex flex-col mt-36">
+            <h1 class="p-2">Enter the secret word</h1>
             <form action="/join" method="post">
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="email">Email</label>
                     <input class=" ml-5 border rounded-md shadow" type="text" name="email" id="email">
                 </div>
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="secretWord">Secret Word</label>
                     <input class="ml-5 border rounded-md shadow" type="text" name="secretWord" id="secretWord">
                 </div>
@@ -25,8 +25,6 @@
             </form>
         </div>
     </div>
-
-
 
     <% if (locals.error) { %>
         <p><%= locals.error.msg %></p>

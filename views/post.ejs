@@ -10,9 +10,9 @@
 <body>
     <%- include('nav') %>
     <div class="w-full flex justify-center">
-        <div class="w-[80%] flex flex-col my-10">
-            <h1><%= locals.post.title %></h1>
-            <p class="text-lg p-2"><%= locals.post.content %></p>
+        <div class="w-[80%] flex flex-col mt-36">
+            <h1 class="p-2"><%= locals.post.title %></h1>
+            <p class="text-lg p-2 whitespace-pre-wrap"><%= locals.post.content %></p>
             <% if (locals.user) { %> <!-- logged in -->
                 <% if (locals.user.member) { %> <!-- is a member  -->
                     <p class="text-lg p-2"><%= `Author: ${locals.post.author.firstName} ${locals.post.author.lastName}` %></p>
