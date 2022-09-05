@@ -10,39 +10,43 @@
 <body>
     <%- include('nav') %>
     <div class="w-full flex justify-center">
-        <div class="max-w-[400px] flex flex-col my-10">
+        <div class="max-w-[400px] flex flex-col mt-36">
+            <h1>Sign Up</h1>
             <form action="/sign-up" method="post">
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="firstName">First Name</label>
-                    <input class="ml-5 border rounded-md shadow" placeholder="John" type="text" name="firstName" id="firstName">
+                    <input class="ml-5 border rounded-md shadow" value="<%= locals.firstName %>" placeholder="John" type="text" name="firstName" id="firstName">
                 </div>
-                <div class="flex justify-between p-2">
-                    <label for="lasttName">Last Name</label>
-                    <input class="ml-5 border rounded-md shadow" placeholder="Smith" type="text" name="lastName" id="lastName">
+                <div class="flex justify-between p-4">
+                    <label for="lastName">Last Name</label>
+                    <input class="ml-5 border rounded-md shadow" value="<%= locals.lastName %>" placeholder="Smith" type="text" name="lastName" id="lastName">
                 </div>
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="email">Email</label>
-                    <input class="ml-5 border rounded-md shadow" placeholder="john@smith.com" type="email" name="email" id="email">
+                    <input class="ml-5 border rounded-md shadow" value="<%= locals.email %>" placeholder="john@smith.com" type="email" name="email" id="email">
                 </div>
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="password">Password</label>
                     <input class="ml-5 border rounded-md shadow" placeholder="Password" type="password" name="password" id="password">
                 </div>
-                <div class="flex justify-between p-2">
+                <div class="flex justify-between p-4">
                     <label for="confirmPassword">Confirm Password</label>
                     <input class="ml-5 border rounded-md shadow" placeholder="Confirm password" type="password" name="confirmPassword" id="confirmPassword">
                 </div>
                 <button class="m-2">Sign Up</button>
-            </form>
+            </form>      
         </div>
     </div>
-    <% if (locals.errors) { %>
-        <% for (var i =1; i <= locals.errors.length;  i++ ) { %>
-            <p><%= locals.errors[i-1].msg %></p>
-        <% }} %>
-    <% if (locals.error) { %>
-        <p><%= locals.error %></p>
-    <% } %>
-    <%= locals.message %>
+    <!-- Error messages -->
+    <div class="flex justify-center">
+        <% if (locals.errors) { %>
+            <% for (var i =1; i <= locals.errors.length;  i++ ) { %>
+                <p class="text-red-600 font-bold"><%= locals.errors[i-1].msg %></p>
+            <% }} %>
+        <% if (locals.error) { %>
+            <p class="text-red-600 font-bold"><%= locals.error %></p>
+        <% } %>
+        <p class="text-red-600 font-bold"><%= locals.message %></p>
+    </div>
 </body>
 </html>

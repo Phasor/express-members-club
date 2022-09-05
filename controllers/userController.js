@@ -7,7 +7,7 @@ exports.user_create_get = (req, res, next) => {
     res.render("sign-up", { title: "Sign Up" });
   };
 
-// POST new user
+// POST new user sign up
 exports.user_create_post = [
     // Validate and sanitize fields.
     body("firstName")
@@ -58,31 +58,50 @@ exports.user_create_post = [
         }
         
         // Data from form is valid.
-        // Create a User object with escaped and trimmed data.
-        bcrypt.hash(req.body.password, 10, (error, hashedPassword) => {
-            // if err, reload page with error message
-            if (error) {
-                console.log(error);
-                res.redirect("/sign-up", { error: error });
+
+        //check if email already exists
+        User.countDocuments({ email: req.body.email }, function (err, count) {
+            if (count > 0) {
+                console.log("User already exists with that email");
+                res.render("sign-up", 
+                {
+                    error: "User already exists with that email",
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+                });
+                return;
             }
-            
-            // if no err, create new user
-            const newUser = new User({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
-                password: hashedPassword,
-                member: false,
-                admin: false,
-            });
-            // save new user
-            newUser.save((err) => {
-                if (err) {
-                return next(err);
-                }
-                // Successful - redirect to home.
-                res.redirect("/");
-            });
-        })
-    },
+            else {
+                
+                // If not, create a User object with escaped and trimmed data.
+                bcrypt.hash(req.body.password, 10, (error, hashedPassword) => {
+                    // if err, reload page with error message
+                    if (error) {
+                        console.log(error);
+                        res.redirect("/sign-up", { error: error });
+                    }
+                    
+                    // if no err, create new user
+                    const newUser = new User({
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName,
+                        email: req.body.email,
+                        password: hashedPassword,
+                        member: false,
+                        admin: false,
+                    });
+                    // save new user
+                    newUser.save((err) => {
+                        if (err) {
+                        return next(err);
+                        }
+                        // Successful - redirect to home.
+                        res.redirect("/");
+                    });
+
+                })
+            } // end of else
+        }); // end of countDocuments
+    }
 ];
