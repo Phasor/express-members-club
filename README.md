@@ -6,6 +6,8 @@ Secret Message Club is a message board where only members of the club can reveal
 
 The app uses Node.js and Express.
 
+`npm install`
+
 `npm run devstart`
 
 ## Features
