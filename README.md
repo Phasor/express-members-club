@@ -1,12 +1,16 @@
 # Secret Message Club
 
-Secret Message Club is a message board where only members of the club can reveal who has written a post.
+Secret Message Club is a mobile responsive web app message board, where only members of the club can see who has written a post and when it was written.
 
 ## Installation
 
-The app uses Node.js and Express.
+The app uses Node.js so install that globally first if required.
+
+Install dependencies:
 
 `npm install`
+
+Run the development server locally:
 
 `npm run devstart`
 
@@ -20,7 +24,7 @@ Users can become Admins by entering the Admin secret. Once they are have Admin s
 
 ### Technology
 
-The app uses a MVC approach. 
+The app adopts an MVC approach utilising the following technologies:  
 
 1. Node.js
 2. Express.js
